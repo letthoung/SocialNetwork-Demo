@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Segment, Form, Button, Grid } from 'semantic-ui-react';
 import { IActivity } from '../../../app/models/activity';
 import { v4 as uuid } from 'uuid';
@@ -8,6 +8,8 @@ import { RouteComponentProps } from 'react-router';
 import { Form as FinalForm, Field } from 'react-final-form';
 import TextInput from '../../../app/common/form/TextInput';
 import TextAreaInput from '../../../app/common/form/TextAreaInput';
+import SelectInput from '../../../app/common/form/SelectInput';
+import { category } from '../../../app/common/options/CategoryOptions';
 
 interface DetailParams {
   id: string;
@@ -89,7 +91,8 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
                 name='category'
                 placeholder='Category'
                 value={activity.category}
-                component={TextInput}
+                options={category}
+                component={SelectInput}
               />
               <Field
                 name='date'
