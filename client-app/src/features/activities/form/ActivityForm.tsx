@@ -7,6 +7,7 @@ import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router';
 import { Form as FinalForm, Field } from 'react-final-form';
 import TextInput from '../../../app/common/form/TextInput';
+import TextAreaInput from '../../../app/common/form/TextAreaInput';
 
 interface DetailParams {
   id: string;
@@ -63,13 +64,6 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
     console.log(value);
   }
 
-  const handleInputChange = (
-    event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = event.currentTarget;
-    setActivity({ ...activity, [name]: value });
-  };
-
   return (
     <Grid>
       <Grid.Column width={10}>
@@ -84,37 +78,36 @@ const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
                 value={activity.title}
                 component={TextInput}
               />
-              <Form.TextArea
-                onChange={handleInputChange}
+              <Field
                 name='description'
-                rows={2}
                 placeholder='Description'
+                rows={3}
                 value={activity.description}
+                component={TextAreaInput}
               />
-              <Form.Input
-                onChange={handleInputChange}
+              <Field
                 name='category'
                 placeholder='Category'
                 value={activity.category}
+                component={TextInput}
               />
-              <Form.Input
-                onChange={handleInputChange}
+              <Field
                 name='date'
-                type='datetime-local'
                 placeholder='Date'
                 value={activity.date}
+                component={TextInput}
               />
-              <Form.Input
-                onChange={handleInputChange}
+              <Field
                 name='city'
                 placeholder='City'
                 value={activity.city}
+                component={TextInput}
               />
-              <Form.Input
-                onChange={handleInputChange}
+              <Field
                 name='venue'
                 placeholder='Venue'
                 value={activity.venue}
+                component={TextInput}
               />
               <Button
                 loading={submitting}
